@@ -1,4 +1,4 @@
-import pkg_resources
+from importlib.metadata import version
 
 ##################################################################
 # Microbleednet help, description and epilog messages to display #
@@ -8,12 +8,12 @@ import pkg_resources
 
 
 def help_descs():
-    version = pkg_resources.require("microbleednet")[0].version
+    v = version('microbleednet')
     helps = {
         'mainparser':
-        "microbleednet: Triplanar ensemble U-Net model, v" + str(version) + "\n" 
-        "   \n" 
-        "Sub-commands available:\n" 
+        "microbleednet: Triplanar ensemble U-Net model, v" + str(v) + "\n"
+        "   \n"
+        "Sub-commands available:\n"
         "       microbleednet preprocess      Preprocess data for a MicroBleed-Net model\n"
         "       microbleednet train           Training a MicroBleed-Net model from scratch\n"
         "       microbleednet evaluate        Applying a saved/pretrained MicroBleed-Net model for testing\n"
@@ -27,7 +27,7 @@ def help_descs():
 
         'preprocess' :
         '   \n'
-        'microbleednet preprocess: preprocessing data for the MicroBleed-Net model, v' + str(version) + '\n'
+        'microbleednet preprocess: preprocessing data for the MicroBleed-Net model, v' + str(v) + '\n'
         '   \n'
         'Usage: microbleednet preprocess -i <input_diretory> -o <output_directory> -r <input_regex> [options]\n'
         '   \n'
@@ -41,10 +41,10 @@ def help_descs():
         '       -v, --verbose                 Display debug messages [default = False]\n'
         '       -pbar, --progress_bar         Display progress bars [default = False]\n'
         '   \n',
-        
+
         'train' :
         '   \n'
-        'microbleednet train: training the MicroBleed-Net model from scratch, v' + str(version) + '\n'
+        'microbleednet train: training the MicroBleed-Net model from scratch, v' + str(v) + '\n'
         '   \n'
         'Usage: microbleednet train -i <input_directory> -m <model_directory> [options]\n'
         '   \n'
@@ -77,13 +77,13 @@ def help_descs():
         '   \n',
 
         'evaluate' :
-        'microbleednet evaluate: testing the MicroBleed-Net model, v' + str(version) + '\n'
+        'microbleednet evaluate: testing the MicroBleed-Net model, v' + str(v) + '\n'
         '   \n'
         'Usage: microbleednet evaluate -i <input_directory> -m <model_directory> -o <output_directory> [options]'
         '   \n'
         'Compulsory arguments:\n'
         '       -i, --inp_dir                         Path to the directory containing FLAIR and T1 images for testing\n'
-        '       -m, --model_dir                       Path to the directory containing saved model or weights for testing (will not be considered if optional argument -p=True)\n'                                                                  
+        '       -m, --model_dir                       Path to the directory containing saved model or weights for testing (will not be considered if optional argument -p=True)\n'
         '       -o, --output_dir                      Path to the directory for saving output predictions\n'
         '   \n'
         'Optional arguments:\n'
@@ -97,7 +97,7 @@ def help_descs():
         '   \n',
 
         'fine_tune' :
-        'microbleednet fine_tune: training the MicroBleed-Net model from scratch, v' + str(version) + '\n'
+        'microbleednet fine_tune: training the MicroBleed-Net model from scratch, v' + str(v) + '\n'
         '   \n'
         'Usage: microbleednet fine_tune -i <input_directory> -m <model_directory> -o <output_directory> [options]\n'
         '   \n'
@@ -137,7 +137,7 @@ def help_descs():
         '   \n',
 
         'cross_validate' :
-        'microbleednet cross_validate: cross-validation of the MicroBleed-Net model, v' + str(version) + '\n'                                                                                            
+        'microbleednet cross_validate: cross-validation of the MicroBleed-Net model, v' + str(v) + '\n'
         '   \n'
         'Usage: microbleednet cross_validate -i <input_directory> -o <output_directory> [options]\n'
         '   \n'
@@ -162,7 +162,7 @@ def help_descs():
         '       -bs, --batch_size                     Batch size used for fine-tuning [default = 8]\n'
         '       -ep, --num_epochs                     Number of epochs for fine-tuning [default = 60]\n'
         '       -es, --early_stop_val                 Number of fine-tuning epochs to wait for progress (early stopping) [default = 20]\n'
-        '       -int, --intermediate                  Saving intermediate prediction results (individual planes) for each subject [default = False]\n'                                                                                     
+        '       -int, --intermediate                  Saving intermediate prediction results (individual planes) for each subject [default = False]\n'
         '       -da, --data_augmentation              Applying data augmentation [default = True]\n'
         '       -af, --aug_factor                     Data inflation factor for augmentation [default = 2]\n'
         '       -v, --verbose                         Display debug messages [default = False]\n'
@@ -172,13 +172,12 @@ def help_descs():
     return helps
 
 def desc_descs():
-    version = pkg_resources.require("microbleednet")[0].version
+    v = version('microbleednet')
     descs = {
         'mainparser' :
-        "microbleednet: Triplanar ensemble U-Net model, v" + str(version) + "\n"
+        "microbleednet: Triplanar ensemble U-Net model, v" + str(v) + "\n"
         "   \n"
         "Sub-commands available:\n"
-        "       microbleednet preprocess      Preprocess data for a MicroBleed-Net model\n"
         "       microbleednet train           Training a MicroBleed-Net model from scratch\n"
         "       microbleednet evaluate        Applying a saved/pretrained MicroBleed-Net model for testing\n"
         "       microbleednet fine_tune       Fine-tuning a saved/pretrained MicroBleed-Net model \n"
@@ -187,26 +186,26 @@ def desc_descs():
 
         'preprocess':
         '   \n'
-        'microbleednet: Triplanar ensemble U-Net model, v' + str(version) + '\n'
+        'microbleednet: Triplanar ensemble U-Net model, v' + str(v) + '\n'
         '   \n'
         'The \'preprocess\' command is used to preprocess subjects for the MicroBleed-Net model specified in\n'
         'the input directory. The FLAIR and T1 volumes should be named as \'<subj_name>_FLAIR.nii.gz\'\n'
-        'and \'<subj_name>_T1.nii.gz\' respectively\n'                                                             
+        'and \'<subj_name>_T1.nii.gz\' respectively\n'
         '   \n',
 
         'train' :
         '   \n'
-        'microbleednet: Triplanar ensemble U-Net model, v' + str(version) + '\n'
-        '   \n'                                                             
+        'microbleednet: Triplanar ensemble U-Net model, v' + str(v) + '\n'
+        '   \n'
         'The \'train\' command trains the MicroBleed-Net model from scratch using the training subjects specified in\n'
         'the input directory. The FLAIR and T1 volumes should be named as \'<subj_name>_FLAIR.nii.gz\'\n'
-        'and \'<subj_name>_T1.nii.gz\' respectively\n'                                                             
+        'and \'<subj_name>_T1.nii.gz\' respectively\n'
         '   \n',
 
         'evaluate' :
         '   \n'
-        'microbleednet: Triplanar ensemble U-Net model, v' + str(version) + '\n'
-        '   \n'                                                             
+        'microbleednet: Triplanar ensemble U-Net model, v' + str(v) + '\n'
+        '   \n'
         'The \'evaluate\' command is used for testing the MicroBleed-Net model on the test subjects specified in\n'
         'the input directory. The FLAIR and T1 volumes should be named as \'<subj_name>_FLAIR.nii.gz\' and\n'
         '\'<subj_name>_T1.nii.gz\'respectively\n'
@@ -214,7 +213,7 @@ def desc_descs():
 
         'fine_tune':
         '   \n'
-        'microbleednet: Triplanar ensemble U-Net model, v' + str(version) + '\n'
+        'microbleednet: Triplanar ensemble U-Net model, v' + str(v) + '\n'
         '   \n'
         'The \'fine_tune\' command fine-tunes a pretrained MicroBleed-Net model (from a model directory) on the\n'
         'training subjects specified in the input directory. The FLAIR and T1 volumes should be named as\n'
@@ -223,7 +222,7 @@ def desc_descs():
 
         'cross_validate':
         '   \n'
-        'microbleednet: Triplanar ensemble U-Net model, v' + str(version) + '\n'
+        'microbleednet: Triplanar ensemble U-Net model, v' + str(v) + '\n'
         '   \n'
         'The \'cross_validate\' command performs cross-validation of the MicroBleed-Net model on the\n'
         'subjects specified in the input directory. The FLAIR and T1 volumes should be named as\n'
@@ -248,3 +247,4 @@ def epilog_descs():
         "   \n",
     }
     return epilogs
+
