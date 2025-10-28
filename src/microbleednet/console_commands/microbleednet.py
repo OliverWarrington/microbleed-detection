@@ -1,7 +1,6 @@
 #!/usr/bin/env fslpython
 import argparse
 import sys
-import pkg_resources
 import codecs
 
 from microbleednet.scripts import commands
