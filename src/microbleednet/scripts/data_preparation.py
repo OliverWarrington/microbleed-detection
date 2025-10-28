@@ -307,9 +307,12 @@ def get_nonoverlapping_patches(image, label, brain_mask, frst=None, patch_size=3
 
     return image_patches, label_patches, smoothed_label_patches, patch_labels, patch_centroids
 
+
 def augment_data(data, labels, n_augmentations=4):
-    
+
     n_samples = data.shape[0]
+    if n_samples == 0:
+        return data, labels
 
     augmented_frst_store = []
     augmented_image_store = []
