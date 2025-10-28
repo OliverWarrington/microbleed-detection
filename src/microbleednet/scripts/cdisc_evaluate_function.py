@@ -52,7 +52,7 @@ def main(subjects, verbose=True, model_directory=None, model_name='microbleednet
         model = utils.load_model(model_path, model, mode='full_model')
     except:
         try:
-            model_path = os.path.join(model_directory, f'{model_name}_cdisc_student_model_weights.pth')
+            model_path = os.path.join(model_directory, f'{model_name}_cdisc_student_model.pth')
             model = utils.load_model(model_path, model, mode='weights')
         except ImportError:
             raise ImportError(f'In directory, {model_directory}, {model_name}_cdisc_model.pth or {model_name}_cdisc_student_model_weights.pth does not appear to be a valid model file.')

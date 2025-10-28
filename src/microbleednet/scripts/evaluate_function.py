@@ -55,7 +55,8 @@ def main(subjects, evaluation_parameters, intermediate=False, model_directory=No
         cdisc_student_model = utils.load_model(student_model_path, cdisc_student_model)
     except:
         try:
-            student_model_path = os.path.join(model_directory, f'{model_name}_cdisc_student_model_weights.pth')
+            #student_model_path = os.path.join(model_directory, f'{model_name}_cdisc_student_model_weights.pth')
+            student_model_path = os.path.join(model_directory, f'{model_name}_cdisc_student_model.pth')
             cdisc_student_model = utils.load_model(student_model_path, cdisc_student_model, mode='weights')
         except ImportError:
             raise ImportError(f'In directory, {model_directory}, {model_name}_cdisc_student_model.pth or {model_name}_cdisc_student_model_weights.pth does not appear to be a valid model file.')
